@@ -2,8 +2,9 @@ import Link from "next/link";
 import { Footer } from "@/components/home/Footer";
 import { Header } from "@/components/home/Header";
 import { PropertyCard } from "@/components/home/PropertyCard";
+import { fetchProperties } from "@/lib/api/properties";
 import {
-  filterProperties,
+  filterPropertyList,
   parseBoolFlagParam,
   parseRoomsParam,
   parseUnsignedNumberParam,
@@ -78,7 +79,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const fairOnly = parseBoolFlagParam(fairOnlyParam);
   const verifiedOnly = parseBoolFlagParam(verifiedOnlyParam);
 
-  const filtered = filterProperties({
+  const catalog = await fetchProperties();
+  const filtered = filterPropertyList(catalog, {
     city: cityFilter,
     type: typeFilter,
     query: queryFilter,
@@ -115,7 +117,8 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
       <main className="mx-auto w-full max-w-[1200px] px-4 pb-24 pt-6 sm:px-6">
         <h1 className="text-[28px] font-bold tracking-[-0.5px] text-text-primary">Каталог</h1>
         <p className="mt-2 text-sm text-text-secondary">
-          Фильтры работают на тестовых данных — позже здесь будет запрос к серверу.
+          Список объявлений загружается с API (<code className="text-xs">/api/properties</code>), фильтры — в браузере на
+          этих данных.
         </p>
 
         <form

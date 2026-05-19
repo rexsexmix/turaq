@@ -328,20 +328,23 @@ export type CatalogFilterOptions = {
   verifiedOnly?: boolean;
 };
 
-/** Отбор для каталога по query-параметрам. */
-export function filterProperties({
-  city,
-  type,
-  query,
-  minPrice,
-  maxPrice,
-  rooms,
-  areaMin,
-  fairOnly,
-  verifiedOnly,
-}: CatalogFilterOptions): Property[] {
+/** Отбор для каталога по query-параметрам (список задаётся снаружи — например после fetch API). */
+export function filterPropertyList(
+  list: Property[],
+  {
+    city,
+    type,
+    query,
+    minPrice,
+    maxPrice,
+    rooms,
+    areaMin,
+    fairOnly,
+    verifiedOnly,
+  }: CatalogFilterOptions,
+): Property[] {
   const qNorm = query?.trim().toLowerCase();
-  return properties.filter((property) => {
+  return list.filter((property) => {
     if (city && city !== "all" && property.city !== city) {
       return false;
     }
@@ -381,6 +384,11 @@ export function filterProperties({
     }
     return true;
   });
+}
+
+/** Отбор по встроенному mock-каталогу (главная, карта и т.д.). */
+export function filterProperties(options: CatalogFilterOptions): Property[] {
+  return filterPropertyList(properties, options);
 }
 
 /** Флаг из query, например `fairOnly=1`. */

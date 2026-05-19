@@ -3,7 +3,7 @@ import { properties } from "@/lib/mockData";
 
 /**
  * Заглушка Phase 2: каталог из mock без БД.
- * Страницы приложения по-прежнему читают lib/mockData напрямую.
+ * Каталог `/search` читает этот endpoint через lib/api/properties.ts.
  */
 export async function GET() {
   return NextResponse.json(
