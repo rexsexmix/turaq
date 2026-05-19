@@ -1,0 +1,32 @@
+---
+description: Turaq — продукт, дизайн Emerald Trust, структура, правила кода
+alwaysApply: true
+---
+
+# Turaq — шпаргалка проекта
+
+**Продукт:** недвижимость в Казахстане (улучшенный Krisha). Слоган RU: «Найди своё место». Города: Алматы → Астана → Шымкент.
+
+**Козыри (не всё в MVP):** честная цена, verified owner, договоры, Turaq Pro, риелторы, соцсеть, видео-лента (не главный экран), live-показы.
+
+## Дизайн Emerald Trust
+- Бренд: `brand` #00C389, `brand-deep`, `gold` (verified), `surface`, `surface-secondary`, `text-primary`, `text-secondary`, `border`
+- Сглаженные формы: `rounded-card` (16), `rounded-large` (24), `rounded-pill`, `rounded-button`
+- Sentence case в UI. Без emoji в коде. Иконки: lucide-react.
+- Темы: класс `.dark` на `<html>`, переключатель `ThemeToggle`, ключ `turaq-theme`
+
+## Структура
+- `app/` — страницы (page, search, property/[id], favorites, map, login, register, profile, submit)
+- `components/home/` — Header, Hero, CategoryGrid, PropertyCard, PropertyGrid, Footer
+- `lib/mockData.ts`, `lib/searchUrl.ts`, `lib/favorites.ts`, `lib/utils.ts`
+- `hooks/useFavoriteIds.ts`
+
+## Код
+- TypeScript строго, функциональные компоненты, Tailwind-токены (не HEX в JSX)
+- `next/image` для фото, Unsplash через `images.remotePatterns`
+- Цены: `formatPrice`, `tabular-nums`
+- `'use client'` только где state/events
+- Next.js 16: читать `node_modules/next/dist/docs/` при сомнениях
+
+## Не делать
+any без причины, MUI/Chakra, TikTok-лента как главная, hamburger как единственная навигация, английский в UI.

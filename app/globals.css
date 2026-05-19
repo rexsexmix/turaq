@@ -1,0 +1,38 @@
+@config "../tailwind.config.ts";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #fafaf7;
+  --surface: #fafaf7;
+  --surface-secondary: #ffffff;
+  --text-primary: #0e1116;
+  --text-secondary: rgba(14, 17, 22, 0.7);
+  --brand: #00c389;
+  --brand-deep: #0e5c3f;
+  --gold: #e5b342;
+  --warning: #f2c744;
+  --error: #ff3b47;
+  --border: rgba(14, 17, 22, 0.08);
+}
+
+.dark {
+  --bg-primary: #0e1116;
+  --surface: #0e1116;
+  --surface-secondary: #1a1f26;
+  --text-primary: #f5f5f2;
+  --text-secondary: rgba(245, 245, 242, 0.7);
+  --brand: #00c389;
+  --brand-deep: #0e5c3f;
+  --gold: #e5b342;
+  --warning: #f2c744;
+  --error: #ff3b47;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.2s;
+}
